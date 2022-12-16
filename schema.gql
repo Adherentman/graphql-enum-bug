@@ -1,0 +1,45 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  ping: String!
+}
+
+type Mutation {
+  """发送手机校验码"""
+  sendSMS: ResultSendSMS!
+}
+
+"""sendSms"""
+union ResultSendSMS = TTSuccess | TTError
+
+"""return"""
+type TTSuccess {
+  """code"""
+  statusCode: StatusCode!
+
+  """desc"""
+  message: String!
+}
+
+"""statusCode"""
+enum StatusCode {
+  """ok"""
+  SUCCESS
+
+  """not login"""
+  UnauthorizedError
+
+  """no permission"""
+  ForbiddenError
+}
+
+"""error"""
+type TTError {
+  """ok"""
+  statusCode: StatusCode!
+
+  """desc"""
+  message: String!
+}
